@@ -1,0 +1,32 @@
+# Pipecat Cloud deployment configuration for inbound calling
+# Deploy using: pcc deploy
+
+[service]
+name = "twilio-inbound-bot"
+description = "AI voice bot for inbound phone calls via Twilio"
+
+[service.resources]
+# CPU and memory allocation
+cpu = 1.0
+memory = "2Gi"
+
+# Scaling configuration
+min_instances = 1
+max_instances = 10
+
+[service.env]
+# Set these in Pipecat Cloud dashboard
+# DEEPGRAM_API_KEY = "set-in-dashboard"
+# GROQ_API_KEY = "set-in-dashboard"
+# TWILIO_ACCOUNT_SID = "set-in-dashboard"
+# TWILIO_AUTH_TOKEN = "set-in-dashboard"
+
+PORT = "7860"
+HOST = "0.0.0.0"
+
+[service.health_check]
+path = "/"
+interval = 30
+timeout = 5
+unhealthy_threshold = 3
+healthy_threshold = 2
